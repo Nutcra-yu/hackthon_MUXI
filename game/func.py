@@ -6,7 +6,7 @@ import pygame
 import sys
 
 
-def drawLine(screen, group, attr, start, end):
+def drawLine(screen, group, attr, start, end,setting):
     nodes = [start]
     new_nodes = []
     pos = [20, 20]
@@ -18,7 +18,7 @@ def drawLine(screen, group, attr, start, end):
         # 生成行位置
         pos[0] = random.randint((pos[0] + attr[0] + 80), (pos[0] + attr[0]* 3))
 
-        if pos[0] + attr[0] * 2 + 20 >= 1000:
+        if pos[0] + attr[0] * 2 + 20 >= setting.screen_width:
             break
 
         # 一行对应多个，使用循环
@@ -26,7 +26,7 @@ def drawLine(screen, group, attr, start, end):
         new_nodes = []
         while i > 0:
             pos[1] = random.randint((pos[1] + attr[1] + 10), (pos[1] + attr[1] * 3))
-            if pos[1] + attr[1] >= 600:
+            if pos[1] + attr[1] >= setting.screen_height:
                 break
 
             cons = distributeCons()
@@ -96,7 +96,7 @@ def Menu(screen, event, width, height):
     return False
 
 
-def reload(path, group, screen, start):
+def reload(path, group, screen, start,setting):
     drawbackground(screen)
     for node in group:
         for behind in node.behind:
@@ -109,24 +109,24 @@ def reload(path, group, screen, start):
                                [node.rect.right, node.rect.top], [node.rect.right, node.rect.bottom]], 3)
 
 
-def drawMenue(screen, group, attr, start, end):
+def drawMenue(screen, group, attr, start, end,setting):
     flag = False
     while True:
         for event in pygame.event.get():
             if not flag:
-                flag = Menu(screen, event, 1000, 600)
+                flag = Menu(screen, event, setting.screen_width, setting.screen_height)
                 if flag:
-                    drawbackground(screen)
+                    drawbackground(screen,setting)
                     pygame.display.flip()
-                    drawLine(screen, group, attr, start, end)
+                    drawLine(screen, group, attr, start, end,setting)
                     group.draw(screen)
                     pygame.display.flip()
                     return False
 
 
-def drawbackground(screen):
-    background = pygame.image.load("./images/background_route.png")
-    background = pygame.transform.scale(background, (1000, 600))
+def drawbackground(screen,setting):
+    background = pygame.image.load("../background.png")
+    background = pygame.transform.scale(background, (setting.screen_width,setting.screen_height))
     screen.blit(background, (0, 0))
 # def restartDraw(ok,screen, group, attr, start, end):
 #     if ok:

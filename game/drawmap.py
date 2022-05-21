@@ -1,13 +1,13 @@
 import sys
 import time
+import settings
 import pygame
 import Node
 import func
 
 
-def drawmain(screen):
-    attr = (90, 90)
-    screen.fill((196, 168, 124))
+def drawmain(screen,setting):
+    screen.fill(setting.bg_color)
 
     start = Node.Node("./images/village.png", "起点", (20, 20), "village")
     end = Node.Node("./images/village.png", "终点", (878, 50), "village")
@@ -18,29 +18,29 @@ def drawmain(screen):
 
     node = start
 
-    func.drawbackground(screen)
+    func.drawbackground(screen,setting)
 
     path = []
     flag = True
     while True:
         if flag:
-            flag = func.drawMenue(screen, group, attr, start, end)
+            flag = func.drawMenue(screen, group, setting.attr, start, end,setting)
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                node = node.judgePos(screen, event, group, attr, node)
+                node = node.judgePos(screen, event, group, setting.attr, node)
                 path.append(node)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
-                    screen.fill((196, 168, 124))
-                    pygame.display.flip()
-                    time.sleep(1)
-                    func.reload(path, group, screen, start)
-                    pygame.display.flip()
+            # if event.type == pygame.KEYDOWN:
+            #     if event.key == pygame.K_a:
+            #         screen.fill((196, 168, 124))
+            #         pygame.display.flip()
+            #         time.sleep(1)
+            #         func.reload(path, group, screen, start,setting)
+            #         pygame.display.flip()
 
         group.draw(screen)
         pygame.display.flip()

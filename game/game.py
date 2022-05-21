@@ -16,6 +16,7 @@ class Game:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         drawmain(self.screen)
         self.person = Person(self)
+        self.button = Button(self)
         pygame.display.set_caption("肉鸽")
 
     def run_game(self):
@@ -40,8 +41,7 @@ class Game:
 
                 person = pygame.image.load('images/person.png')
                 person = pygame.transform.rotozoom(person, 0, 0.15)
-                self.screen.blit(person, (200, 150))
-                self.person.show_information()
+                self.screen.blit(person, (70, 150))
             elif event.type == pygame.QUIT:
                 sys.exit()
 
