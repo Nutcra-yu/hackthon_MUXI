@@ -10,7 +10,7 @@ class creature:
         self.buffs = []
         self.skills = []
 
-    def pickup_skill(self, skill_name: str):
+    def pickup_skill(self, skill_name):
         index = self.skill_data.index(skill_name)
         skill = self.skill_data.pop(index)
         self.skills.append(skill.name())

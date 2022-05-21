@@ -7,7 +7,7 @@ class SkillType(Enum):
     special = "special"
 
 
-class skillData(SkillType):
+class skillData:
     def __init__(self):
         self.skills_data = []
 
@@ -17,7 +17,7 @@ class skillData(SkillType):
         skill = {"name": name, "value": value, "energy": energy_cost,
                  "skill_type": skill_type,
                  "limit": qualification}
-        self.skills_data[name] = skill
+        self.skills_data.append(skill)
 
     # 创建技能列表
     def _data_create(self):
