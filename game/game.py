@@ -14,7 +14,7 @@ class Game:
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
-        drawmain(self.screen)
+        drawmain(self.screen,self.settings)
         self.person = Person(self)
         self.button = Button(self)
         pygame.display.set_caption("肉鸽")

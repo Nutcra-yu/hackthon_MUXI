@@ -7,7 +7,7 @@ class SkillType(Enum):
     special = "special"
 
 
-class skillData(SkillType):
+class skillData:
     def __init__(self):
         self.skills_data = []
 

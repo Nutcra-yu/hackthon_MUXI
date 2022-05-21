@@ -125,7 +125,7 @@ def drawMenue(screen, group, attr, start, end,setting):
 
 
 def drawbackground(screen,setting):
-    background = pygame.image.load("../background.png")
+    background = pygame.image.load("./images/background_route.png")
     background = pygame.transform.scale(background, (setting.screen_width,setting.screen_height))
     screen.blit(background, (0, 0))
 # def restartDraw(ok,screen, group, attr, start, end):
