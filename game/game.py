@@ -12,9 +12,8 @@ class Game:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
-
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
-        drawmain(self.screen,self.settings)
+        drawmain(self.screen,self.settings,self)
         self.person = Person(self)
         self.button = Button(self)
         pygame.display.set_caption("肉鸽")
@@ -44,6 +43,19 @@ class Game:
                 self.screen.blit(person, (70, 150))
             elif event.type == pygame.QUIT:
                 sys.exit()
+
+    def _judge_node(self,node):
+        if node.construction == "viliage":
+            self.person.hp += 10
+        elif node.construction == "fight":
+            #
+        elif node.construction == "trade":
+            #
+        elif node.construction == "random":
+            #
+        elif node.construction == "inner":
+            #
+
 
     def _update_screen(self):
         self.screen.fill(self.settings.bg_color)
