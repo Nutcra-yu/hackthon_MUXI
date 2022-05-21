@@ -3,14 +3,16 @@ class Settings:
         # 屏幕设置
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (230, 230, 230)
+        self.bg_color = (196, 168, 124)
+
+
+        self.attr = (90, 90)
 
         # 人的设置
         self.hp = 70
         self.age = 30
         self.energy = 10
         self.wisdom = 10
-        self.died_age = 60
 
         # # 按钮设置
         # self.button_width = 30
