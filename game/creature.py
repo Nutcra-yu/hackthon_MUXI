@@ -11,7 +11,7 @@ class creature:
         self.skills = []
 
     def pickup_skill(self, skill_name):
-        # index = self.skill_data.index(skill_name)
+        # index = self.skill_data.index(skill_name) 123
         skill = self.skill_data.get(skill_name)
         self.skills.append(skill)
 
