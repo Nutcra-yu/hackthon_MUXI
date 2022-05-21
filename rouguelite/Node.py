@@ -12,7 +12,7 @@ class Node(pygame.sprite.Sprite):
         # 有不同的图片
         self.description = desc
         image = pygame.image.load(source)
-        self.image = pygame.transform.rotozoom(image, 0, 0.2)
+        self.image = pygame.transform.scale(image,(90,90))
         # self.object = ""
         self.rect = self.image.get_rect()
         self.rect.left = pos[0]
@@ -27,10 +27,9 @@ class Node(pygame.sprite.Sprite):
 
     def judgeline(self, node, screen, start, mid, end):
         # 会存在没画线的情况，导致完整性缺乏
-
         if start == self or self == mid:
             pygame.draw.aaline(screen, "red", (self.rect.right, self.rect.centery), (node.rect.left, node.rect.centery),
-                               2)
+                               3)
             self.behind.append(node)
             node.front.append(self)
             return
@@ -39,16 +38,18 @@ class Node(pygame.sprite.Sprite):
             return
 
         pygame.draw.aaline(screen, "red", (self.rect.right, self.rect.centery), (node.rect.left, node.rect.centery),
-                           2)
+                           3)
 
         # 添加前后节点，便于寻找是否存在出路
         self.behind.append(node)
         node.front.append(self)
 
-    def judgePos(self, event, group, attr, start):
+    def judgePos(self, screen,event, group, attr, start):
         for node in self.behind:
             if node.rect[0] < event.pos[0] < node.rect[0] + attr[0] and node.rect[1] < event.pos[1] < \
                     node.rect[1] + attr[1]:
+
+                pygame.draw.lines(screen,"black",True,[[node.rect.left,node.rect.bottom],[node.rect.left,node.rect.top],[node.rect.right,node.rect.top],[node.rect.right,node.rect.bottom]],2)
                 return node
         print("请点击该节点的后一节点")
         return start

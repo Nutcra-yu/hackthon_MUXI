@@ -1,47 +1,48 @@
 import sys
+
 import pygame
 import Node
-import random
 import func
 
-attr = (112, 45)
+attr = (90, 90)
 
 pygame.init()
 pygame.display.set_caption("rouguelite")
-screen = pygame.display.set_mode((1200, 600))
+screen = pygame.display.set_mode((1000, 600))
+screen.fill((196, 168, 124))
 
-start = Node.Node("../bullet.jpg", "起点", (10, 50), "village")
-end = Node.Node("../bullet.jpg", "终点", (1078, 50), "village")
+start = Node.Node("../village.png", "起点", (20, 20), "village")
+end = Node.Node("../village.png", "终点", (878, 50), "village")
 
 group = pygame.sprite.Group()
 
 group.add(start)
 
 node = start
-background = pygame.image.load("../1.jpg").convert()
-screen.blit(background,(0,0))
 
-flag = False
+func.drawbackground(screen)
+
+path = []
+flag = True
 while True:
-    if not flag:
-        while True:
-            for event_ in pygame.event.get():
-                flag = func.Menu(screen, event_, 1200, 600)
-                if flag:
-                    break
-            if flag:
-                background = pygame.image.load("../backgroud.jpg").convert()
-                screen.blit(background,(0,0))
-                func.drawLine(screen, group, attr, start, end)
-                pygame.display.flip()
-                break
+    if flag:
+        flag = func.drawMenue(screen, group, attr, start, end)
 
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            node = node.judgePos(screen, event, group, attr, node)
+            path.append(node)
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            node = node.judgePos(event, group, attr, node)
+
+        # if event.type == pygame.KEYDOWN:
+        #     if event.key == pygame.K_a:
+        #         screen.fill((196, 168, 124))
+        #         pygame.display.flip()
+        #         time.sleep(1)
+        #         func.reload(path, group, screen, start)
+        #         pygame.display.flip()
 
     group.draw(screen)
     pygame.display.flip()
