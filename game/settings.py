@@ -11,3 +11,4 @@ class Settings:
         self.energy = 30
         self.wisdom = 50
 
+
