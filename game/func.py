@@ -25,7 +25,8 @@ def drawLine(screen, group, attr, start, end,setting):
         i = random.randint(2, 4)
         new_nodes = []
         while i > 0:
-            pos[1] = random.randint((pos[1] + attr[1] + 10), (pos[1] + attr[1] * 3))
+
+            pos[1] = random.randint((pos[1] + attr[1] + 40), (pos[1] + attr[1] * 2))
             if pos[1] + attr[1] >= setting.screen_height:
                 break
 
@@ -125,7 +126,11 @@ def drawMenue(screen, group, attr, start, end,setting):
 
 
 def drawbackground(screen,setting):
+<<<<<<< HEAD
     background = pygame.image.load("./images/background_route.png")
+=======
+    background = pygame.image.load("../background.png")
+>>>>>>> map
     background = pygame.transform.scale(background, (setting.screen_width,setting.screen_height))
     screen.blit(background, (0, 0))
 # def restartDraw(ok,screen, group, attr, start, end):

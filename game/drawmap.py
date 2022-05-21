@@ -9,8 +9,10 @@ import func
 def drawmain(screen,setting):
     screen.fill(setting.bg_color)
 
-    start = Node.Node("./images/village.png", "起点", (20, 20), "village")
-    end = Node.Node("./images/village.png", "终点", (878, 50), "village")
+
+    start = Node.Node("../village.png", "起点", (20, 20), "village")
+    end = Node.Node("../village.png", "终点", (setting.screen_width - setting.attr[0] - 50,setting.screen_height), "village")
+
 
     group = pygame.sprite.Group()
 

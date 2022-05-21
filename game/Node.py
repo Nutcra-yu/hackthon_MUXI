@@ -17,7 +17,9 @@ class Node(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left = pos[0]
         self.rect.top = pos[1]
+
         self.construction = construction
+
 
         self.front = []
         self.behind = []
