@@ -18,7 +18,7 @@ def drawLine(screen, group, attr, start, end,setting):
         # 生成行位置
         pos[0] = random.randint((pos[0] + attr[0] + 80), (pos[0] + attr[0]* 3))
 
-        if pos[0] + attr[0] * 2 + 20 >= setting.screen_width:
+        if pos[0] + attr[0] * 3 >= setting.screen_width:
             break
 
         # 一行对应多个，使用循环
@@ -126,11 +126,7 @@ def drawMenue(screen, group, attr, start, end,setting):
 
 
 def drawbackground(screen,setting):
-<<<<<<< HEAD
     background = pygame.image.load("./images/background_route.png")
-=======
-    background = pygame.image.load("../background.png")
->>>>>>> map
     background = pygame.transform.scale(background, (setting.screen_width,setting.screen_height))
     screen.blit(background, (0, 0))
 # def restartDraw(ok,screen, group, attr, start, end):
