@@ -1,3 +1,5 @@
+import pygame.font
+
 import skillsdata
 from settings import Settings
 
@@ -62,3 +64,7 @@ class Person:
 
     def get_right_hands(self, right_hand):
         self.right_hand = right_hand
+
+    def show_information(self):
+        font = pygame.font.Font('C:/Windows/Fonts/simhei.ttf', 30)
+        text_health = font.render("生命值")

@@ -1,24 +1,50 @@
 import sys
 import pygame
 from settings import Settings
+from button import Button
 
 
-class game:
+class Game:
     """管理游戏的类"""
 
     def __init__(self):
-        self.setting = Settings()
         pygame.init()
+        self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((self.setting.screen_width, self.setting.screen_height))
-        pygame.display.set_caption("个人信息")
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        self.button = Button(self)
+        pygame.display.set_caption("肉鸽")
 
     def run_game(self):
+        flag = False
         while True:
+            if not flag:
+                self._update_screen()
+
+            self._check_events()
+            flag = True
             pygame.display.flip()
+
+    def _check_events(self):
+        for event in pygame.event.get():  # 获得事件
+            if event.type == pygame.MOUSEBUTTONDOWN and self.button.rect.left <= event.pos[0] <= self.button.rect.right\
+                    and self.button.rect.top <= event.pos[1] <= self.button.rect.bottom:
+                background = pygame.image.load('images/background.jpg').convert()
+                background = pygame.transform.scale(background, (self.screen.get_width(), self.screen.get_height()))
+                self.screen.blit(background, (0, 0))
+                person = pygame.image.load('images/person.png')
+                person = pygame.transform.rotozoom(person, 0, 0.15)
+                self.screen.blit(person, (70, 150))
+            elif event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.button.blitme()
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
     # 创建游戏实例并运行游戏。
-    game = game()
+    game = Game()
     game.run_game()

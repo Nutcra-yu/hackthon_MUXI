@@ -11,4 +11,9 @@ class Settings:
         self.energy = 10
         self.wisdom = 10
 
+        # # 按钮设置
+        # self.button_width = 30
+        # self.button_height = 30
+
+
 
