@@ -27,6 +27,9 @@ class Person(creature):
                           "legs": Quality.none,
                           "feet": Quality.none}
 
+    def add_hp(self,value):
+        self.hp += value
+
     # 设置护甲值
     def defence_set(self):
         self._check_quality()
