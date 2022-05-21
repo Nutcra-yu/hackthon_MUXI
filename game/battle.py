@@ -99,10 +99,10 @@ class Battle:
         self.person.defence += (self.cloth + (self.cotton + self.iron) * 2)
         if self.iron % 2:  # 单数
             self.person.defence += (self.iron - 1) / 2
-        else:  # 双数
-            self.person.defence += self.iron / 2
+        else:  # 双数n / 2
 
     # 对方进行攻击
+            self.person.defence += self.iro
     def attack(self, enemy: Person or Monster, value):
         if enemy.defence <= value:
             enemy.defence = 0
@@ -128,6 +128,7 @@ class Battle:
             elif quality == Quality.iron:
                 self.iron += 1
 
+# 干
     # def fight_preparation(self):
     #     # 牌库更新
     #     self.battle_cards = self.skills[:]
