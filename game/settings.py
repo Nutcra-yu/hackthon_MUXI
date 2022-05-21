@@ -7,3 +7,5 @@ class Settings:
 
         # 人的设置
         self.health = 100
+
+
