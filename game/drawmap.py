@@ -1,5 +1,5 @@
 import sys
-
+import time
 import pygame
 import Node
 import func
@@ -9,8 +9,8 @@ def drawmain(screen):
     attr = (90, 90)
     screen.fill((196, 168, 124))
 
-    start = Node.Node("../village.png", "起点", (20, 20), "village")
-    end = Node.Node("../village.png", "终点", (878, 50), "village")
+    start = Node.Node("./images/village.png", "起点", (20, 20), "village")
+    end = Node.Node("./images/village.png", "终点", (878, 50), "village")
 
     group = pygame.sprite.Group()
 
@@ -34,13 +34,13 @@ def drawmain(screen):
                 pygame.quit()
                 sys.exit()
 
-            # if event.type == pygame.KEYDOWN:
-            #     if event.key == pygame.K_a:
-            #         screen.fill((196, 168, 124))
-            #         pygame.display.flip()
-            #         time.sleep(1)
-            #         func.reload(path, group, screen, start)
-            #         pygame.display.flip()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    screen.fill((196, 168, 124))
+                    pygame.display.flip()
+                    time.sleep(1)
+                    func.reload(path, group, screen, start)
+                    pygame.display.flip()
 
         group.draw(screen)
         pygame.display.flip()

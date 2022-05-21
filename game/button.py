@@ -9,7 +9,8 @@ class Button:
         self.screen_rect = game.screen.get_rect()
 
         # 加载按钮图像并获取其外接矩形。
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/information.bmp')
+        self.image = pygame.transform.scale(self.image,(40,40))
         self.rect = self.image.get_rect()
 
         self.rect.topright = self.screen_rect.topright

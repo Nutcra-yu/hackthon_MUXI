@@ -30,7 +30,7 @@ def drawLine(screen, group, attr, start, end):
                 break
 
             cons = distributeCons()
-            new_node = Node.Node("../" + cons + ".png", "", pos, cons)
+            new_node = Node.Node("./images/" + cons + ".png", "", pos, cons)
             group.add(new_node)
 
             new_nodes.append(new_node)
@@ -125,7 +125,7 @@ def drawMenue(screen, group, attr, start, end):
 
 
 def drawbackground(screen):
-    background = pygame.image.load("../background.png")
+    background = pygame.image.load("./images/background_route.png")
     background = pygame.transform.scale(background, (1000, 600))
     screen.blit(background, (0, 0))
 # def restartDraw(ok,screen, group, attr, start, end):
