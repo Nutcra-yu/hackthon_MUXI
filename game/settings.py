@@ -10,6 +10,7 @@ class Settings:
         self.age = 30
         self.energy = 10
         self.wisdom = 10
+        self.died_age = 60
 
         # # 按钮设置
         # self.button_width = 30

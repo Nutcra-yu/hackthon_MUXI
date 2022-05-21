@@ -20,6 +20,7 @@ class Person(creature):
         self.age = self.settings.age
         self.wisdom = self.settings.wisdom
 
+        # 用于存放饰品
         self.qualities = {"head": Quality.none,
                           "body": Quality.none,
                           "leftHand": Quality.none,
@@ -27,29 +28,27 @@ class Person(creature):
                           "legs": Quality.none,
                           "feet": Quality.none}
 
-    # 设置护甲值
-    def defence_set(self):
-        self._check_quality()
-        # 根据判定增加护甲
-        self.defence += (self.cloth + (self.cotton + self.iron) * 2)
-        if self.iron % 2:
-            self.defence += (self.iron - 1) / 2
-        else:
-            self.defence += self.iron / 2
+        # 获取默认技能
+        self._default_skills()
 
-    # 用于重置装备
-    def _reset(self):
-        self.cloth = 0
-        self.cotton = 0
-        self.iron = 0
+    # 年龄增长 默认值为5
+    def grow(self):
+        self.age += 5
+        self.energy -= 1
+        self.wisdom += 1
+        # 达到45岁后 绵软、闪避
+        if self.age == 45:
+            del_index = self.skills.index("用力一击")
+            del self.skills[del_index]
+            del_index = self.skills.index("闪避")
+            del self.skills[del_index]
+            self.pickup_skill("绵软一拳")
+        # 达到一定年龄 老死
+        if self.age >= self.settings.died_age:
+            self.hp = 0
 
-    # 对身上的装备进行判定
-    def _check_quality(self):
-        self._reset()
-        for quality in self.qualities.values():
-            if quality == Quality.cloth:
-                self.cloth += 1
-            elif quality == Quality.cotton:
-                self.cotton += 1
-            elif quality == Quality.iron:
-                self.iron += 1
+    # 获取默认技能
+    def _default_skills(self):
+        self.pickup_skill("用力一拳")
+        self.pickup_skill("格挡")
+        self.pickup_skill("闪避")
