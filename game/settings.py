@@ -6,8 +6,8 @@ class Settings:
         self.bg_color = (230, 230, 230)
 
         # 人的设置
-        self.health = 100
+        self.hp = 100
         self.age = 15
-        self.energy = 15
+        self.energy = 30
         self.wisdom = 50
 
