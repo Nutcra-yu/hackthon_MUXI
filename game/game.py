@@ -11,7 +11,7 @@ class game:
         pygame.init()
 
         self.screen = pygame.display.set_mode((self.setting.screen_width, self.setting.screen_height))
-        pygame.display.set_caption("个人信息")
+        pygame.display.set_caption("null")
 
     def run_game(self):
         while True:

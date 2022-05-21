@@ -1,64 +1,55 @@
-import skillsdata
+from creature import creature
+from enum import Enum
 from settings import Settings
 
 
-class Person:
+class Quality(Enum):
+    none = None
+    cloth = "布甲"
+    cotton = "棉甲"
+    iron = "铁甲"
+
+
+class Person(creature):
     def __init__(self):
-        """初始化"""
-        # 在设置中初始化 年龄 血量 精力 智慧
+        super().__init__()
         self.settings = Settings()
-        self.skillData = skillsdata.skills_data
 
-        # 技能
-        self.skills = []
-        self.pickup()  # 默认技能：强力一拳
-        self.pickup()  # 默认技能：闪避
-        self.pickup()  # 默认技能：格挡
+        self.hp = self.settings.hp
+        self.energy = self.settings.energy
+        self.age = self.settings.age
+        self.wisdom = self.settings.wisdom
 
+        self.qualities = {"head": Quality.none,
+                          "body": Quality.none,
+                          "leftHand": Quality.none,
+                          "rightHand": Quality.none,
+                          "legs": Quality.none,
+                          "feet": Quality.none}
 
-        # 饰品栏
-        self.head = None
-        self.body = None
-        self.left_hand = None
-        self.right_hand = None
-        self.legs = None
-        self.feet = None
+    # 设置护甲值
+    def defence_set(self):
+        self._check_quality()
+        # 根据判定增加护甲
+        self.defence += (self.cloth + (self.cotton + self.iron) * 2)
+        if self.iron % 2:
+            self.defence += (self.iron - 1) / 2
+        else:
+            self.defence += self.iron / 2
 
-    # 变老
-    def grow(self):
-        self.settings.age += 5
-        self.settings.energy -= 1
-        self.settings.wisdom += 1
+    # 用于重置装备
+    def _reset(self):
+        self.cloth = 0
+        self.cotton = 0
+        self.iron = 0
 
-    """技能"""
-
-    # 习得技能 #只能顺序习得
-    def pickup(self):
-        self.skills.append(self.skillData.pop(0))
-
-    """饰品"""
-
-    def decoration_buff(self):
-        """计算饰品的增益"""
-        self.settings.hp += (self.body.hp_buff + self.legs.hp_buff)
-        self.settings.energy += (self.feet.energy_buff + self.left_hand.energy_buff + self.right_hand.energy_buff)
-        self.settings.wisdom += self.head.wisdom_buff
-
-    # 获得饰品
-    def get_head(self, head):
-        self.head = head
-
-    def get_body(self, body):
-        self.body = body
-
-    def get_legs(self, legs):
-        self.legs = legs
-
-    def get_feet(self, feet):
-        self.feet = feet
-
-    def get_left_hand(self, left_hand):
-        self.left_hand = left_hand
-
-    def get_right_hands(self, right_hand):
-        self.right_hand = right_hand
+    # 对身上的装备进行判定
+    def _check_quality(self):
+        self._reset()
+        for quality in self.qualities.values():
+            if quality == Quality.cloth:
+                self.cloth += 1
+            elif quality == Quality.cotton:
+                self.cotton += 1
+            elif quality == Quality.iron:
+                self.iron += 1
