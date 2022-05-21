@@ -1,3 +1,4 @@
+import pygame
 from creature import creature
 from enum import Enum
 from settings import Settings
@@ -132,5 +133,5 @@ class Person(creature):
         self.screen.blit(text10, text10_rect)
 
         quality = self.qualities["head"]
-        if quality == Quality.none
+        if quality == Quality.none:
             text = "无"
