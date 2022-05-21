@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from button import Button
+from person import Person
 
 
 class Game:
@@ -13,6 +14,7 @@ class Game:
 
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         self.button = Button(self)
+        self.person = Person(self)
         pygame.display.set_caption("肉鸽")
 
     def run_game(self):
@@ -34,7 +36,8 @@ class Game:
                 self.screen.blit(background, (0, 0))
                 person = pygame.image.load('images/person.png')
                 person = pygame.transform.rotozoom(person, 0, 0.15)
-                self.screen.blit(person, (70, 150))
+                self.screen.blit(person, (200, 150))
+                self.person.show_information()
             elif event.type == pygame.QUIT:
                 sys.exit()
 
