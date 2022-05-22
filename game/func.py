@@ -6,7 +6,7 @@ import pygame
 import sys
 
 
-def drawLine(screen, group, attr, start, end,setting):
+def drawLine(screen, group, attr, start, end, setting):
     nodes = [start]
     new_nodes = []
     pos = [20, 20]

@@ -15,6 +15,8 @@ class Button:
 
         self.rect.topright = self.screen_rect.topright
 
+        self.screen.blit(self.image, self.rect)
+
     def blitme(self):
         """在指定位置绘制按钮。"""
         self.screen.blit(self.image, self.rect)
