@@ -5,7 +5,6 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (196, 168, 124)
 
-
         self.attr = (90, 90)
 
         # 人的设置
@@ -17,6 +16,5 @@ class Settings:
         # # 按钮设置
         # self.button_width = 30
         # self.button_height = 30
-
 
 

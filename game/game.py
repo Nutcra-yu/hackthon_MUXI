@@ -48,6 +48,23 @@ class Game:
     # def _update_screen(self):
     #     self.button.blitme()
     #     pygame.display.flip()
+    def _judge_node(self,node):
+        if node.construction == "viliage":
+            self.person.hp += 10
+        elif node.construction == "fight":
+            #
+        elif node.construction == "trade":
+            #
+        elif node.construction == "random":
+            #
+        elif node.construction == "inner":
+            #
+
+
+    def _update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.button.blitme()
+        pygame.display.flip()
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 import sys
 import time
+import game
 import settings
 import pygame
 import Node
@@ -31,6 +32,7 @@ def drawmain(screen,setting):
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 node = node.judgePos(screen, event, group, setting.attr, node)
+                game._judge_node(node)
                 path.append(node)
             if event.type == pygame.QUIT:
                 pygame.quit()
