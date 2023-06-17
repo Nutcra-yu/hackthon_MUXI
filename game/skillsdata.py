@@ -1,17 +1,17 @@
 from enum import Enum
 
-
+# 技能类型（枚举类）
 class SkillType(Enum):
     attack = "attack"
     defence = "defence"
     special = "special"
 
-
+# 技能库类
 class skillData:
     def __init__(self):
         self.skills_data = {}
 
-    # 创建技能
+    # 工具方法：创建技能
     def _skill_create(self, name, value, energy_cost, skill_type: SkillType = SkillType.attack, qualification=None):
         # 名字 值 精力 技能类型 限制条件
         skill = {"name": name, "value": value, "energy": energy_cost,

@@ -33,7 +33,7 @@ class Person(creature):
         # 获取默认技能
         self._default_skills()
 
-#hhhh
+
     # 年龄增长 默认值为5
     def grow(self):
         self.age += 5

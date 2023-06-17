@@ -1,3 +1,6 @@
+"""基础设置"""
+
+
 class Settings:
     def __init__(self):
         # 屏幕设置
@@ -16,5 +19,3 @@ class Settings:
         # # 按钮设置
         # self.button_width = 30
         # self.button_height = 30
-
-
